@@ -1,0 +1,45 @@
+drop table pool;
+drop table ride;
+drop table user1;
+drop table owner;
+
+create table owner
+(
+name varchar2(15) not null,
+car varchar2(15) not null,
+usn varchar2(15) not null,
+pw varchar2(15) not null,
+no int not null,
+addr varchar2(50) not null,
+primary key(usn)
+);   
+
+create table user1
+(
+name varchar2(15) not null,
+job varchar2(15) not null,
+usn varchar2(15) not null,
+pw varchar2(15) not null,
+no int not null,
+addr varchar2(50) not null,
+primary key(usn)
+);
+
+create table ride
+(
+usn varchar2(15) not null references owner (usn),
+start1 varchar2(50) not null,
+finish varchar2(50) not null,
+time varchar2(5) not null,
+day varchar2(15) not null,
+cost int not null,
+no int not null,
+primary key(usn)
+);
+
+create table pool
+(
+usn varchar2(15) not null references user1 (usn),
+osn varchar2(15) not null references ride (usn), 
+primary key(usn)
+);
